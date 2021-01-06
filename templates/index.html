@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>{% block title %}Adopt A Friend{% endblock %}</title>
+    {% endblock %}
+</head>
+<body>
+    <div class="container">
+    <div class="row">
+        {% for pet in pets %}
+        <div class="col-4">
+            <h3 class="{{pet.id}}">{{pet.name}}</h3>
+            <img src="{{pet.photo_url}}" class="img-thumbnail" alt="A photo of {{pet.name}}, a pet available for adoption at Adopt a Friend">
+            <p class="full-info">
+                {{pet.get_info}}
+            </p>
+            <small class="available">Is {{pet.name}} available: {{pet.available}} </small>
+            <a href="/edit/{{pet.id}}" class="btn btn-info">Edit Pet Info</a>
+            <a href="/delete/{{pet.id}}" class="btn btn-danger">Delete Pet</a>
+        </div>
+        {% endfor %}
+    </div>
+    </div>
+    <footer>
+        {% block footer %}
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        {% endblock %}
+    </footer>
+</body>
+</html>
