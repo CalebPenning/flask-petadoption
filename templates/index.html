@@ -10,9 +10,26 @@
 </head>
 <body>
 {% block nav %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<a href="#" class="navbar-brand">Adopt A Friend</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse"  data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+</button>
 
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+<ul class="navbar-nav mr-auto">
+    <li class="nav-item active">
+        <a href="/" class="nav-link">All Pets</a>
+    </li>
+    <li class="nav-item active">
+        <a href="/add-pet" class="nav-link">Add Pet Listing</a>
+    </li>
+</ul>
+</div>
+</nav>
 {% endblock %}
-    <div class="container">
+    <div class="container mt-2">
+    <div class="justify-content-center">
     {% block content %}
     {% with messages = get_flashed_messages() %}
     <small class="text-success">
@@ -25,19 +42,20 @@
     {% endwith %}
     <div class="row">
         {% for pet in pets %}
-        <div class="col-4">
+        <div class="col">
             <h2 class="{{pet.id}} primary-2">{{pet.name}}</h3>
-            <img src="{{pet.photo_url}}" class="img-thumbnail" alt="A photo of {{pet.name}}, a pet available for adoption at Adopt a Friend">
+            <img src="{{pet.photo_url}}" class="img-thumbnail img-fluid" alt="A photo of {{pet.name}}, a pet available for adoption at Adopt a Friend">
             <p class="full-info">
                 {{pet.get_info}}
             </p>
             <p class="available">{{pet.name}}'s availability: {% if pet.available %} <b class="font-weight-bold text-success">AVAILABLE</b> {% else %} <small class="font-weight-bold text-danger">NOT AVAILABLE</small> {% endif %} </p>
-            <a href="/edit/{{pet.id}}" class="btn btn-info">Edit Pet Info</a>
-            <a href="/delete/{{pet.id}}" class="btn btn-danger">Delete Pet</a>
+            <a href="/edit-pet/{{pet.id}}" class="btn btn-info">Edit Pet Info</a>
+            <a href="/delete-pet/{{pet.id}}" class="btn btn-danger">Delete Pet</a>
         </div>
         {% endfor %}
     </div>
     {% endblock %}
+    </div>
     </div>
     <footer class="scripts">
         {% block footer %}

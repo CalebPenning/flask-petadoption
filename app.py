@@ -19,7 +19,7 @@ def render_homepage():
     pets = Pet.query.all()
     return render_template('index.html', pets=pets)
 
-@app.route('/edit/<int:p_id>', methods=['GET', 'POST'])
+@app.route('/edit-pet/<int:p_id>', methods=['GET', 'POST'])
 def edit_pet(p_id):
     """Show edit form for a pet instance and handle committing changes to db."""
     pet = Pet.query.get_or_404(p_id)
@@ -39,12 +39,12 @@ def edit_pet(p_id):
         return render_template("edit_pet_form.html", form=form, pet=pet)
     
 
-@app.route('/delete/<int:p_id>')
+@app.route('/delete-pet/<int:p_id>')
 def ask_permission(p_id):
     pet = Pet.query.get_or_404(p_id)
     return render_template('permissions.html', pet=pet)
 
-@app.route('/delete/<int:p_id>', methods=['POST'])
+@app.route('/delete-pet/<int:p_id>', methods=['POST'])
 def remove_pet(p_id):
     if Pet.query.get(p_id):
         Pet.query.filter_by(id=p_id).delete()

@@ -5,7 +5,7 @@
 <h2 class="primary-2">
     Edit {{pet.name}}
 </h2>
-<form action="/edit/{{pet.id}}" method="POST">
+<form action="/edit-pet/{{pet.id}}" method="POST">
     {{ form.hidden_tag() }}
     {% for field in form if field.widget.input_type != 'hidden' %}
     <div class="form-group">
