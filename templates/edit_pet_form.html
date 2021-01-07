@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+{% block title %} Edit {{pet.name}} {% endblock %}
+
+{% block content %}
+<h2 class="primary-2">
+    Edit {{pet.name}}
+</h2>
+<form action="/edit/{{pet.id}}" method="POST">
+    {{ form.hidden_tag() }}
+    {% for field in form if field.widget.input_type != 'hidden' %}
+    <div class="form-group">
+    <p>
+        {{field.label}}
+        {{field}}
+
+        {% for err in field.errors %}
+        <small class="form-text text-danger">{{ err }}</small>
+        {% endfor %}
+    </p>
+    </div>
+    {% endfor %}
+    <button class="btn btn-primary" type="submit">Submit Changes</button>
+    <a href="/" class="btn btn-danger">Go Back</a>
+</form>
+{% endblock %}

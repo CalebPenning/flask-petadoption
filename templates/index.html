@@ -10,22 +10,24 @@
 </head>
 <body>
     <div class="container">
+    {% block content %}
     <div class="row">
         {% for pet in pets %}
         <div class="col-4">
-            <h3 class="{{pet.id}}">{{pet.name}}</h3>
+            <h2 class="{{pet.id}} primary-2">{{pet.name}}</h3>
             <img src="{{pet.photo_url}}" class="img-thumbnail" alt="A photo of {{pet.name}}, a pet available for adoption at Adopt a Friend">
             <p class="full-info">
                 {{pet.get_info}}
             </p>
-            <small class="available">Is {{pet.name}} available: {{pet.available}} </small>
+            <p class="available">{{pet.name}}'s availability: {% if pet.available %} <b class="font-weight-bold text-success">AVAILABLE</b> {% else %} <small class="font-weight-bold text-danger">NOT AVAILABLE</small> {% endif %} </p>
             <a href="/edit/{{pet.id}}" class="btn btn-info">Edit Pet Info</a>
             <a href="/delete/{{pet.id}}" class="btn btn-danger">Delete Pet</a>
         </div>
         {% endfor %}
     </div>
+    {% endblock %}
     </div>
-    <footer>
+    <footer class="scripts">
         {% block footer %}
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
