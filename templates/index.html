@@ -9,8 +9,20 @@
     {% endblock %}
 </head>
 <body>
+{% block nav %}
+
+{% endblock %}
     <div class="container">
     {% block content %}
+    {% with messages = get_flashed_messages() %}
+    <small class="text-success">
+    {% if messages %}
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+    {% endif %}
+    </small>
+    {% endwith %}
     <div class="row">
         {% for pet in pets %}
         <div class="col-4">

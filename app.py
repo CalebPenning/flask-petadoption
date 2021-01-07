@@ -39,3 +39,16 @@ def edit_pet(p_id):
         return render_template("edit_pet_form.html", form=form, pet=pet)
     
 
+@app.route('/delete/<int:p_id>')
+def ask_permission(p_id):
+    pet = Pet.query.get_or_404(p_id)
+    return render_template('permissions.html', pet=pet)
+
+@app.route('/delete/<int:p_id>', methods=['POST'])
+def remove_pet(p_id):
+    if Pet.query.get(p_id):
+        Pet.query.filter_by(id=p_id).delete()
+        db.session.commit()
+        
+        flash("Listing deleted successfully")
+        return redirect('/')

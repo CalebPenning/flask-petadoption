@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+
+{% block title %}Delete Listing For {{pet.name}} {% endblock %}
+
+{% block content %}
+<form action="/delete/{{pet.id}}" method="POST">
+<p class="font-weight-bold text-danger">Are you sure you want to delete the listing for {{pet.name}}?</p>
+<button class="btn btn-danger">Delete Listing</button>
+<a class="btn btn-info" href="/">Go Back</a>
+</form>
+{% endblock %}
