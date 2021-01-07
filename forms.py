@@ -19,7 +19,7 @@ class AddPetForm(FlaskForm):
         validators=[Optional(), Length(min=10)]
     )
     
-    available = BooleanField('Are They Available?', validators=[InputRequired('Please choose an availability for the pet.')])
+    available = BooleanField('Check box if this pet is available', validators=[Optional()], default='checked')
     
     
 class EditPetForm(FlaskForm):

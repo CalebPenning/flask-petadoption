@@ -52,3 +52,25 @@ def remove_pet(p_id):
         
         flash("Listing deleted successfully")
         return redirect('/')
+    
+@app.route('/add-pet', methods=['GET', 'POST'])
+def add_pet():
+    form = AddPetForm()
+    if form.validate_on_submit():
+        name = form.name.data
+        species = form.species.data
+        age = form.age.data
+        photo_url = form.photo_url.data 
+        notes = form.notes.data
+        available = form.available.data
+        
+        flash(f"New listing for pet: {name}, {age} year old {species} added successfully")
+        
+        pet = Pet(name=name, species=species, age=age, photo_url=photo_url, notes=notes, available=available)
+        db.session.add(pet)
+        db.session.commit()
+        
+        return redirect('/')
+    
+    else:
+        return render_template('add_pet_form.html', form=form)

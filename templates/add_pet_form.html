@@ -1,25 +1,24 @@
 {% extends 'index.html' %}
-{% block title %} Edit {{pet.name}} {% endblock %}
+
+{% block title %}New Listing{% endblock %}
 
 {% block content %}
-<h2 class="display-2">
-    Edit {{pet.name}}
-</h2>
-<form action="/edit-pet/{{pet.id}}" method="POST">
+<h1 class="display-1">New Pet Listing</h1>
+<form action="/add-pet" method="POST">
     {{ form.hidden_tag() }}
     {% for field in form if field.widget.input_type != 'hidden' %}
     <div class="form-group">
     <p>
-        {{field.label}}
-        {{field(class_="form-control")}}
-
+        {{ field.label }}
+        {{ field(class_="form-control") }}
+        
         {% for err in field.errors %}
         <small class="form-text text-danger">{{ err }}</small>
         {% endfor %}
     </p>
     </div>
     {% endfor %}
-    <button class="btn btn-primary" type="submit">Submit Changes</button>
-    <a href="/" class="btn btn-danger">Go Back</a>
+    <button class="btn btn-success" type="submit">Submit Pet</button>
+    <a href="/" class="btn btn-danger">Cancel</a>
 </form>
 {% endblock %}
