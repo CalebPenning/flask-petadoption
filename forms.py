@@ -35,6 +35,6 @@ class EditPetForm(FlaskForm):
         validators=[Optional(), Length(min=10)]
     )
     
-    available = BooleanField('Are they available?', validators=[InputRequired('Please choose an availability for the pet.')])
+    available = BooleanField('Check the box if the pet is up available for adoption', validators=[Optional()])
     
     
