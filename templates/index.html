@@ -42,15 +42,14 @@
     {% endwith %}
     <div class="row">
         {% for pet in pets %}
-        <div class="col">
-            <h2 class="{{pet.id}} display-3">{{pet.name}}</h3>
-            <img src="{{pet.photo_url}}" class="img-thumbnail img-fluid" alt="A photo of {{pet.name}}, a pet available for adoption at Adopt a Friend" style="height: 200; width: 200;">
+        <div class="col-6">
+            <h2 class="{{pet.id}} display-4">{{pet.name}}</h3>
+            <img src="{{pet.photo_url}}" class="img-thumbnail" alt="A photo of {{pet.name}}, a pet available for adoption at Adopt a Friend" style="height: 200; width: 200;">
             <p class="full-info">
                 {{pet.get_info}}
             </p>
             <p class="available">{{pet.name}}'s availability: {% if pet.available %} <b class="font-weight-bold text-success">AVAILABLE</b> {% else %} <small class="font-weight-bold text-danger">NOT AVAILABLE</small> {% endif %} </p>
-            <a href="/edit-pet/{{pet.id}}" class="btn btn-info">Edit Pet Info</a>
-            <a href="/delete-pet/{{pet.id}}" class="btn btn-danger">Delete Pet</a>
+            <a href="/details/{{pet.id}}" class="btn btn-info">Show Details</a>
         </div>
         {% endfor %}
     </div>

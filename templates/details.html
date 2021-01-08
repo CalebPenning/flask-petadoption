@@ -2,5 +2,18 @@
 {% block title %}{{ pet.name }} Details {% endblock %}
 
 {% block content %}
-
+<h1 class="primary-1">{{ pet.name }} Details:</h1>
+<hr>
+<img src="{{pet.photo_url}}" class="img-thumbnail" alt="A pretty photo of {{pet.name}}" style="height: 300; width: 300;">
+<hr>
+<p>
+{{pet.get_info}}
+</p>
+<hr>
+<p class="h5">Additional notes:</p>
+<p>{{pet.notes}}</p>
+<hr>
+<a href="/edit-pet/{{pet.id}}" class="btn btn-info">Edit {{pet.name}}</a>
+<a href="/delete-pet/{{pet.id}}" class="btn btn-danger">Remove Listing</a>
+<br><br>
 {% endblock %}
